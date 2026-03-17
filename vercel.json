@@ -4,6 +4,7 @@
   "rewrites": [
     { "source": "/login",      "destination": "/login.html" },
     { "source": "/dashboard",  "destination": "/dashboard.html" },
-    { "source": "/kennisbank", "destination": "/kennisbank.html" }
+    { "source": "/kennisbank", "destination": "/kennisbank.html" },
+    { "source": "/welkom",     "destination": "/welkom.html" }
   ]
 }
