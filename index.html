@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Milo — Je persoonlijke AI-assistent via WhatsApp | Gratis proberen</title>
+  <meta name="description" content="Milo is je persoonlijke AI-agent via WhatsApp. Stuurt een brief, regelt een vergelijking, boekt een afspraak — namens jou. Vanaf €9,99/maand.">
+  <meta property="og:title" content="Milo — AI die niet praat, maar doet.">
+  <meta property="og:description" content="Jouw persoonlijke assistent via WhatsApp. Milo legt brieven uit, vergelijkt energieleveranciers, boekt afspraken en regelt overheidszaken. Gratis proberen.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://heymilo.nl">
+  <meta property="og:image" content="https://heymilo.nl/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://heymilo.nl">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script defer src="https://va.vercel-scripts.com/v1/script.js"></script>
+  <script defer src="https://va.vercel-scripts.com/v1/speed-insights/script.js"></script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --milo:        #14B8A6;
+      --milo-dark:   #0D9488;
+      --milo-deeper: #0F766E;
+      --milo-soft:   rgba(20,184,166,0.09);
+      --milo-soft2:  rgba(20,184,166,0.15);
+      --green:       #10B981;
+      --green-soft:  rgba(16,185,129,0.10);
+      --red-soft:    rgba(239,68,68,0.10);
+      --bg:          #FFFFFF;
+      --bg-soft:     #F6FFFE;
+      --bg-section:  #F0FDFA;
+      --dark:        #0C1428;
+      --dark2:       #111827;
+      --fg:          #0C1428;
+      --fg-muted:    #4B5563;
+      --fg-subtle:   #9CA3AF;
+      --border:      #E5E7EB;
+      --border-teal: rgba(20,184,166,0.25);
+      --grad:        linear-gradient(135deg, #14B8A6 0%, #0891B2 100%);
+      --grad-hero:   linear-gradient(135deg, #0D9488 0%, #0369A1 100%);
+      --glow:        0 8px 32px rgba(20,184,166,0.30);
+      --shadow-xs:   0 1px 2px rgba(12,20,40,0.05);
+      --shadow-sm:   0 1px 4px rgba(12,20,40,0.07), 0 4px 12px rgba(12,20,40,0.04);
+      --shadow-md:   0 4px 16px rgba(12,20,40,0.09), 0 1px 4px rgba(12,20,40,0.05);
+      --shadow-lg:   0 10px 40px rgba(12,20,40,0.11), 0 2px 8px rgba(12,20,40,0.06);
+      --shadow-xl:   0 20px 60px rgba(12,20,40,0.13), 0 4px 16px rgba(12,20,40,0.07);
+      --radius:      10px;
+      --radius-lg:   16px;
+      --radius-xl:   22px;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1,h2,h3,h4 {
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      font-weight: 800;
+      line-height: 1.13;
+      letter-spacing: -0.025em;
+      color: var(--fg);
+    }
+
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+
+    .grad-text {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Inter', sans-serif;
+      padding: 14px 28px; font-size: 15px; font-weight: 600;
+      text-decoration: none; border-radius: 9px;
+      border: 1.5px solid transparent; cursor: pointer;
+      transition: all 0.18s; white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--milo); color: #fff;
+      box-shadow: 0 2px 8px rgba(20,184,166,0.25), 0 4px 20px rgba(20,184,166,0.18);
+    }
+    .btn-primary:hover {
+      background: var(--milo-dark);
+      transform: translateY(-1px);
+      box-shadow: var(--glow);
+    }
+    .btn-ghost { background: transparent; color: var(--milo); border-color: var(--border-teal); }
+    .btn-ghost:hover { background: var(--milo-soft); }
+    .btn-dark { background: var(--dark); color: #fff; }
+    .btn-dark:hover { background: #1a2540; transform: translateY(-1px); }
+    .btn-sm { padding: 9px 18px; font-size: 14px; }
+    .btn-lg { padding: 16px 36px; font-size: 17px; }
+
+    /* Fade-in */
+    .fi { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .fi.visible { opacity: 1; transform: none; }
+
+    .section-label {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--milo-dark);
+      background: var(--milo-soft); padding: 5px 14px; border-radius: 99px;
+      margin-bottom: 14px;
+    }
+    .section-header { text-align: center; margin-bottom: 64px; }
+    .section-header h2 { font-size: clamp(28px, 3.5vw, 44px); margin-bottom: 16px; }
+    .section-header p { font-size: 17px; color: var(--fg-muted); max-width: 580px; margin: 0 auto; line-height: 1.75; }
+
+    /* ── ANNOUNCEMENT BAR ── */
+    .announce {
+      background: var(--dark); color: rgba(255,255,255,0.9);
+      text-align: center; padding: 10px 20px;
+      font-size: 13px; font-weight: 500; line-height: 1.5;
+    }
+    .announce a { color: #14B8A6; text-decoration: underline; font-weight: 600; }
+    .announce strong { color: #fff; }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: 64px; background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center;
+      transition: box-shadow 0.2s, top 0.3s;
+    }
+    .nav.with-announce { top: 40px; }
+    .nav.scrolled { box-shadow: 0 1px 8px rgba(12,20,40,0.09); }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1160px; margin: 0 auto; padding: 0 24px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 9px;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 21px; font-weight: 900;
+      color: var(--fg); text-decoration: none; letter-spacing: -0.02em;
+    }
+    .nav-logo-icon {
+      width: 32px; height: 32px; border-radius: 9px;
+      background: var(--grad); display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 8px rgba(20,184,166,0.3);
+    }
+    .nav-logo-icon svg { width: 18px; height: 18px; fill: #fff; }
+    .nav-links {
+      display: flex; align-items: center; gap: 28px;
+      list-style: none; margin: 0; padding: 0;
+    }
+    .nav-links a {
+      font-size: 14px; font-weight: 500; color: var(--fg-muted);
+      text-decoration: none; transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--fg); }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .nav-login { font-size: 14px; font-weight: 500; color: var(--fg-muted); text-decoration: none; transition: color 0.15s; }
+    .nav-login:hover { color: var(--fg); }
+    .nav-hamburger { display: none; background: none; border: none; font-size: 22px; cursor: pointer; color: var(--fg); padding: 4px; }
+    @media (max-width: 840px) {
+      .nav-links { display: none; position: fixed; top: 104px; left: 0; right: 0;
+        background: #fff; flex-direction: column; gap: 0; padding: 8px 0 20px;
+        border-bottom: 1px solid var(--border); box-shadow: var(--shadow-md); z-index: 199; }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; }
+      .nav-links a { display: block; padding: 12px 24px; font-size: 15px; }
+      .nav-login { display: none; }
+      .nav-hamburger { display: block; }
+      .nav-right .btn { font-size: 13px; padding: 9px 16px; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 144px 0 100px;
+      background:
+        radial-gradient(ellipse 70% 50% at 75% 20%, rgba(20,184,166,0.10) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 10% 85%, rgba(8,145,178,0.07) 0%, transparent 60%),
+        #ffffff;
+    }
+    .hero-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    @media (max-width: 920px) {
+      .hero-layout { grid-template-columns: 1fr; gap: 48px; }
+      .hero { padding: 116px 0 72px; }
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 600; color: var(--milo-dark);
+      background: var(--milo-soft); border: 1px solid var(--border-teal);
+      padding: 6px 14px; border-radius: 99px; margin-bottom: 22px;
+    }
+    .hero-eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--milo); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.35;} }
+    .hero-title { font-size: clamp(34px, 4.8vw, 58px); margin-bottom: 22px; line-height: 1.08; }
+    .hero-sub { font-size: 18px; color: var(--fg-muted); margin-bottom: 36px; max-width: 500px; line-height: 1.75; }
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+    .hero-trust { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+    .hero-trust-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--fg-muted); font-weight: 500; }
+    .hero-trust-item svg { width: 15px; height: 15px; stroke: var(--green); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+    /* WhatsApp mockup */
+    .wa-phone {
+      background: #fff; border-radius: 24px;
+      box-shadow: var(--shadow-xl), 0 0 0 1px rgba(12,20,40,0.06);
+      overflow: hidden; max-width: 360px; margin-left: auto;
+      transform: perspective(1200px) rotateY(-4deg) rotateX(2deg);
+      transition: transform 0.4s ease;
+    }
+    .wa-phone:hover { transform: perspective(1200px) rotateY(0deg) rotateX(0deg); }
+    @media (max-width: 920px) { .wa-phone { margin: 0 auto; transform: none; } }
+    .wa-header {
+      background: linear-gradient(135deg, #075E54, #128C7E);
+      padding: 14px 18px; display: flex; align-items: center; gap: 12px;
+    }
+    .wa-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center;
+      font-size: 20px; font-weight: 800; color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif; flex-shrink: 0;
+    }
+    .wa-name { color: #fff; font-weight: 700; font-size: 15px; }
+    .wa-online { color: rgba(255,255,255,0.75); font-size: 12px; }
+    .wa-online-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #4ade80; margin-right: 4px; animation: pulse 2s infinite; }
+    .wa-body { padding: 16px; background: #ECE5DD; height: 260px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+    .wa-date { text-align: center; font-size: 11px; color: #6b7280; background: rgba(255,255,255,0.5); padding: 2px 10px; border-radius: 99px; align-self: center; }
+    .wa-bubble { padding: 9px 13px; border-radius: 12px; font-size: 13.5px; line-height: 1.55; max-width: 88%; position: relative; }
+    .wa-bubble.them { background: #fff; color: var(--fg); align-self: flex-start; border-top-left-radius: 3px; box-shadow: 0 1px 2px rgba(0,0,0,0.10); }
+    .wa-bubble.me { background: #DCF8C6; color: var(--fg); align-self: flex-end; border-top-right-radius: 3px; box-shadow: 0 1px 2px rgba(0,0,0,0.10); }
+    .wa-bubble-time { font-size: 10.5px; color: #9CA3AF; float: right; margin-left: 8px; margin-top: 2px; }
+    .wa-bubble.me .wa-bubble-time { color: #5dad8f; }
+    .wa-bubble .wa-img { width: 100%; border-radius: 8px; background: #fff; border: 1px solid #e5e7eb; height: 110px; display: flex; flex-direction: column; margin-bottom: 6px; overflow: hidden; padding: 10px 12px; gap: 5px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .wa-img-header { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
+    .wa-img-logo { width: 20px; height: 20px; border-radius: 4px; background: #1d4ed8; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .wa-img-logo svg { width: 12px; height: 12px; fill: #fff; }
+    .wa-img-sender { font-size: 9px; font-weight: 700; color: #1d4ed8; text-transform: uppercase; letter-spacing: 0.04em; }
+    .wa-img-subject { font-size: 10px; font-weight: 600; color: #111827; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .wa-img-line { height: 5px; border-radius: 99px; background: #e5e7eb; }
+    .wa-img-line.w80 { width: 80%; }
+    .wa-img-line.w60 { width: 60%; }
+    .wa-img-line.w90 { width: 90%; }
+    .wa-typing { display: flex; align-items: center; gap: 4px; padding: 9px 14px; background: #fff; border-radius: 12px; border-top-left-radius: 3px; align-self: flex-start; box-shadow: 0 1px 2px rgba(0,0,0,0.10); }
+    .wa-typing span { width: 7px; height: 7px; border-radius: 50%; background: #9CA3AF; animation: typing 1.4s infinite; }
+    .wa-typing span:nth-child(2) { animation-delay: 0.2s; }
+    .wa-typing span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typing { 0%,80%,100%{transform:scale(1);opacity:0.5;} 40%{transform:scale(1.2);opacity:1;} }
+    .wa-input-bar { padding: 10px 12px; background: #f0f0f0; display: flex; align-items: center; gap: 8px; }
+    .wa-input { flex: 1; padding: 9px 14px; border-radius: 22px; background: #fff; border: none; font-size: 13px; font-family: 'Inter', sans-serif; color: var(--fg); outline: none; }
+    .wa-send { width: 36px; height: 36px; border-radius: 50%; background: #128C7E; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .wa-send svg { width: 16px; height: 16px; fill: #fff; }
+
+    /* ── TRUST STRIP ── */
+    .trust-section { padding: 44px 0; background: var(--bg-section); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center; }
+    @media (max-width: 700px) { .trust-grid { grid-template-columns: repeat(2, 1fr); } }
+    .trust-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .trust-icon { width: 44px; height: 44px; border-radius: 12px; background: #fff; border: 1px solid var(--border-teal); display: flex; align-items: center; justify-content: center; }
+    .trust-icon svg { width: 22px; height: 22px; stroke: var(--milo); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    .trust-label { font-size: 14px; font-weight: 600; color: var(--fg); }
+    .trust-sub { font-size: 12px; color: var(--fg-muted); line-height: 1.5; }
+
+    /* ── HOW IT WORKS ── */
+    .hiw-section { padding: 104px 0; background: #fff; }
+    .hiw-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    @media (max-width: 760px) { .hiw-steps { grid-template-columns: 1fr; } }
+    .hiw-step {
+      background: var(--bg-soft); border: 1px solid var(--border-teal); border-radius: var(--radius-lg);
+      padding: 36px; position: relative; overflow: hidden;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .hiw-step:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+    .hiw-bg-num {
+      position: absolute; top: -24px; right: -8px;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 160px; font-weight: 900;
+      color: var(--milo); opacity: 0.05; line-height: 1; pointer-events: none;
+    }
+    .hiw-num-label { font-size: 12px; font-weight: 700; color: var(--milo); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 16px; }
+    .hiw-step h3 { font-size: 20px; margin-bottom: 10px; }
+    .hiw-step p { font-size: 14px; color: var(--fg-muted); line-height: 1.75; }
+
+    /* ── KILLER USE CASE ── */
+    .killer-section { padding: 104px 0; background: var(--bg-section); }
+    .killer-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    @media (max-width: 860px) { .killer-layout { grid-template-columns: 1fr; } }
+    .killer-text h2 { font-size: clamp(26px, 3.2vw, 40px); margin-bottom: 18px; }
+    .killer-text p { font-size: 16px; color: var(--fg-muted); line-height: 1.8; margin-bottom: 20px; }
+    .killer-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+    .killer-chip { font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 99px; background: #fff; border: 1px solid var(--border-teal); color: var(--milo-dark); }
+    .killer-demo {
+      background: #fff; border-radius: var(--radius-xl); padding: 28px;
+      box-shadow: var(--shadow-xl); border: 1px solid var(--border);
+    }
+    .killer-demo-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .killer-demo-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--milo-soft); display: flex; align-items: center; justify-content: center; }
+    .killer-demo-icon svg { width: 22px; height: 22px; stroke: var(--milo); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    .killer-demo-title { font-size: 15px; font-weight: 700; color: var(--fg); }
+    .killer-demo-sub { font-size: 12px; color: var(--fg-muted); }
+    .killer-step { display: flex; gap: 14px; margin-bottom: 18px; }
+    .killer-step-num { width: 26px; height: 26px; border-radius: 50%; background: var(--milo); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+    .killer-step-body { flex: 1; }
+    .killer-step-body strong { font-size: 14px; color: var(--fg); display: block; margin-bottom: 4px; }
+    .killer-step-body p { font-size: 13px; color: var(--fg-muted); line-height: 1.6; }
+    .killer-result { background: var(--green-soft); border: 1px solid rgba(16,185,129,0.25); border-radius: 10px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; margin-top: 4px; }
+    .killer-result svg { width: 20px; height: 20px; stroke: var(--green); fill: none; stroke-width: 2; flex-shrink: 0; stroke-linecap: round; stroke-linejoin: round; }
+    .killer-result span { font-size: 13.5px; font-weight: 600; color: #065F46; }
+
+    /* ── USE CASES ── */
+    .uc-section { padding: 104px 0; background: #fff; }
+    .uc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    @media (max-width: 860px) { .uc-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .uc-grid { grid-template-columns: 1fr; } }
+    .uc-card {
+      border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px;
+      transition: all 0.25s; background: #fff; box-shadow: var(--shadow-sm);
+    }
+    .uc-card:hover { box-shadow: var(--shadow-xl); border-color: var(--border-teal); transform: translateY(-4px); }
+    .uc-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--bg-section); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+    .uc-icon svg { width: 24px; height: 24px; stroke: var(--milo-dark); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    .uc-card h3 { font-size: 17px; margin-bottom: 8px; }
+    .uc-card p { font-size: 14px; color: var(--fg-muted); line-height: 1.7; }
+    .uc-example { font-size: 12.5px; color: var(--milo-dark); font-style: italic; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+
+    /* ── VERGELIJKING (Milo vs rest) ── */
+    .vs-section { padding: 104px 0; background: var(--bg-section); }
+    .vs-table { width: 100%; border-collapse: collapse; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); }
+    .vs-table th { padding: 18px 24px; font-size: 14px; font-weight: 700; text-align: left; }
+    .vs-table td { padding: 14px 24px; font-size: 14px; border-top: 1px solid var(--border); }
+    .vs-table thead { background: var(--dark); }
+    .vs-table thead th { color: rgba(255,255,255,0.6); }
+    .vs-table thead th.highlight { color: #fff; background: var(--milo); }
+    .vs-table tbody tr { background: #fff; }
+    .vs-table tbody tr:hover { background: var(--bg-soft); }
+    .vs-feature { color: var(--fg); font-weight: 500; }
+    .vs-yes { color: var(--green); font-weight: 700; }
+    .vs-no { color: #EF4444; font-weight: 500; opacity: 0.7; }
+    .vs-partial { color: #F59E0B; font-weight: 500; }
+    .vs-cell-milo { background: var(--milo-soft) !important; }
+    @media (max-width: 700px) {
+      .vs-table th, .vs-table td { padding: 10px 14px; font-size: 13px; }
+    }
+
+    /* ── AGENT TECH ── */
+    .tech-section { padding: 104px 0; background: var(--bg-section); }
+    .tech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 56px; }
+    @media (max-width: 760px) { .tech-grid { grid-template-columns: 1fr; } }
+    .tech-card {
+      background: #fff; border: 1px solid var(--border-teal); border-radius: var(--radius-lg);
+      padding: 32px; position: relative; overflow: hidden;
+    }
+    .tech-card-icon {
+      width: 52px; height: 52px; border-radius: 14px; background: var(--milo-soft);
+      display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
+    }
+    .tech-card-icon svg { width: 26px; height: 26px; stroke: var(--milo); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    .tech-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .tech-card p { font-size: 14px; color: var(--fg-muted); line-height: 1.7; }
+    .tech-card .tech-tag { display: inline-block; margin-top: 14px; font-size: 11px; font-weight: 600; background: var(--milo-soft); color: var(--milo); padding: 3px 10px; border-radius: 99px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .tech-flow { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 48px 0 56px; flex-wrap: wrap; }
+    .tech-flow-step { background: #fff; border: 1px solid var(--border-teal); border-radius: 12px; padding: 14px 22px; text-align: center; min-width: 120px; }
+    .tech-flow-step .tfs-label { font-size: 11px; font-weight: 600; color: var(--milo); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+    .tech-flow-step .tfs-val { font-size: 14px; font-weight: 700; color: var(--fg); }
+    .tech-flow-arrow { color: var(--fg-muted); font-size: 20px; }
+    @media (max-width: 600px) { .tech-flow { gap: 8px; } .tech-flow-arrow { display: none; } }
+
+    /* ── NEWS ── */
+    .news-section { padding: 104px 0; background: #fff; }
+    .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 48px; }
+    @media (max-width: 760px) { .news-grid { grid-template-columns: 1fr; } }
+    .news-card {
+      border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px;
+      transition: box-shadow 0.2s, transform 0.2s; background: var(--bg-soft);
+    }
+    .news-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+    .news-source { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+    .news-source-badge { font-size: 11px; font-weight: 700; background: #f3f4f6; color: #374151; padding: 3px 10px; border-radius: 99px; letter-spacing: 0.03em; }
+    .news-date { font-size: 11px; color: var(--fg-muted); }
+    .news-card h3 { font-size: 15px; font-weight: 700; line-height: 1.5; color: var(--fg); margin-bottom: 10px; }
+    .news-card p { font-size: 13.5px; color: var(--fg-muted); line-height: 1.65; }
+    .news-stat-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; text-align: center; }
+    @media (max-width: 600px) { .news-stat-bar { grid-template-columns: 1fr; } }
+    .news-stat { background: var(--bg-soft); border: 1px solid var(--border-teal); border-radius: 14px; padding: 28px 20px; }
+    .news-stat-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 36px; font-weight: 900; color: var(--milo); line-height: 1; }
+    .news-stat-label { font-size: 13px; color: var(--fg-muted); margin-top: 6px; line-height: 1.5; }
+
+    /* ── PRIVACY ── */
+    .privacy-section { padding: 104px 0; background: #fff; }
+    .privacy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    @media (max-width: 760px) { .privacy-grid { grid-template-columns: 1fr; } }
+    .privacy-card {
+      background: var(--bg-soft); border: 1px solid var(--border-teal);
+      border-radius: var(--radius-lg); padding: 30px;
+    }
+    .privacy-card .pc-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--milo-soft); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+    .privacy-card .pc-icon svg { width: 22px; height: 22px; stroke: var(--milo); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    .privacy-card h3 { font-size: 16px; margin-bottom: 8px; }
+    .privacy-card p { font-size: 14px; color: var(--fg-muted); line-height: 1.7; }
+
+    /* ── PRICING ── */
+    .pricing-section { padding: 104px 0; background: var(--bg-section); }
+    .pricing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    @media (max-width: 1000px) { .pricing-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .pricing-grid { grid-template-columns: 1fr; } }
+    .pricing-card {
+      background: #fff; border: 1.5px solid var(--border); border-radius: var(--radius-lg);
+      padding: 30px; display: flex; flex-direction: column; gap: 0;
+      box-shadow: var(--shadow-sm); transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .pricing-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+    .pricing-card.featured {
+      border-color: var(--milo); box-shadow: var(--glow);
+      position: relative;
+    }
+    .pricing-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--milo); color: #fff; font-size: 11px; font-weight: 700;
+      padding: 4px 14px; border-radius: 99px; white-space: nowrap;
+      letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .pricing-tier { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--fg-muted); margin-bottom: 10px; }
+    .pricing-price { margin-bottom: 6px; }
+    .pricing-price .amount { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 36px; font-weight: 900; color: var(--fg); }
+    .pricing-price .period { font-size: 14px; color: var(--fg-muted); }
+    .pricing-price .free-label { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 30px; font-weight: 900; color: var(--fg); }
+    .pricing-tagline { font-size: 13px; color: var(--fg-muted); margin-bottom: 22px; min-height: 36px; line-height: 1.5; }
+    .pricing-divider { height: 1px; background: var(--border); margin: 18px 0; }
+    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 10px; flex: 1; margin-bottom: 24px; }
+    .pricing-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; color: var(--fg); line-height: 1.5; }
+    .pricing-features li svg { width: 16px; height: 16px; stroke: var(--green); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; margin-top: 2px; }
+    .pricing-features li.off { color: var(--fg-subtle); }
+    .pricing-features li.off svg { stroke: var(--fg-subtle); }
+    .pricing-cta { display: block; text-align: center; }
+    .pricing-yearly { font-size: 12px; color: var(--fg-subtle); text-align: center; margin-top: 10px; }
+
+    /* ── TESTIMONIALS ── */
+    .testi-section { padding: 104px 0; background: #fff; }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    @media (max-width: 820px) { .testi-grid { grid-template-columns: 1fr; } }
+    .testi-card {
+      background: var(--bg-soft); border: 1px solid var(--border-teal); border-radius: var(--radius-lg);
+      padding: 30px; transition: box-shadow 0.2s;
+    }
+    .testi-card:hover { box-shadow: var(--shadow-md); }
+    .testi-stars { color: #F59E0B; font-size: 15px; margin-bottom: 14px; }
+    .testi-text { font-size: 14.5px; line-height: 1.75; color: var(--fg); margin-bottom: 18px; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 10px; }
+    .testi-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--milo-soft); border: 1.5px solid var(--border-teal); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; color: var(--milo-dark); font-family: 'Plus Jakarta Sans', sans-serif; }
+    .testi-name { font-size: 13.5px; font-weight: 700; color: var(--fg); }
+    .testi-role { font-size: 12px; color: var(--fg-muted); }
+    .testi-saving { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700; color: var(--green); background: var(--green-soft); padding: 3px 10px; border-radius: 99px; margin-top: 14px; }
+
+    /* ── FAQ ── */
+    .faq-section { padding: 104px 0; background: var(--bg-section); }
+    .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+    .faq-item { border-top: 1px solid var(--border); }
+    .faq-item:first-child { border-top: none; }
+    .faq-q {
+      width: 100%; background: #fff; border: none; padding: 20px 24px; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 700;
+      color: var(--fg); text-align: left; transition: background 0.15s; gap: 12px;
+    }
+    .faq-q:hover { background: var(--bg-soft); }
+    .faq-q svg { width: 18px; height: 18px; stroke: var(--fg-muted); fill: none; stroke-width: 2; stroke-linecap: round; flex-shrink: 0; transition: transform 0.25s; }
+    .faq-q.open svg { transform: rotate(45deg); stroke: var(--milo); }
+    .faq-a { display: none; padding: 0 24px 20px; font-size: 14.5px; color: var(--fg-muted); line-height: 1.8; background: #fff; }
+    .faq-a.open { display: block; }
+
+    /* ── WAITLIST ── */
+    .waitlist-section { padding: 104px 0; background: var(--dark); position: relative; overflow: hidden; }
+    .waitlist-section::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(20,184,166,0.15) 0%, transparent 70%);
+    }
+    .waitlist-inner { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; text-align: center; }
+    .waitlist-inner h2 { font-size: clamp(28px, 3.5vw, 46px); color: #fff; margin-bottom: 14px; }
+    .waitlist-inner p { font-size: 17px; color: rgba(255,255,255,0.55); margin-bottom: 36px; line-height: 1.75; }
+    .waitlist-form { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 18px; }
+    .waitlist-input {
+      flex: 1; min-width: 240px; padding: 15px 20px; border-radius: 9px;
+      background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.15);
+      font-size: 15px; font-family: 'Inter', sans-serif; color: #fff; outline: none;
+      transition: border-color 0.2s;
+    }
+    .waitlist-input::placeholder { color: rgba(255,255,255,0.35); }
+    .waitlist-input:focus { border-color: var(--milo); background: rgba(255,255,255,0.12); }
+    .waitlist-sub { font-size: 13px; color: rgba(255,255,255,0.35); }
+    .waitlist-sub strong { color: rgba(255,255,255,0.6); }
+    .waitlist-count {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 600; color: var(--milo);
+      background: rgba(20,184,166,0.12); border: 1px solid rgba(20,184,166,0.25);
+      padding: 6px 14px; border-radius: 99px; margin-bottom: 28px;
+    }
+    .waitlist-count-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--milo); animation: pulse 2s infinite; }
+    .waitlist-success { display: none; padding: 16px 24px; border-radius: 10px; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); color: #6EE7B7; font-size: 15px; font-weight: 600; margin-bottom: 18px; }
+    .waitlist-success.show { display: block; }
+
+    /* ── FINAL CTA BAND ── */
+    .cta-band {
+      background: var(--dark); padding: 96px 0; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-band::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 90% at 50% 50%, rgba(20,184,166,0.18) 0%, transparent 70%);
+    }
+    .cta-band-inner { position: relative; z-index: 1; }
+    .cta-band h2 { font-size: clamp(28px, 3.8vw, 52px); color: #fff; margin-bottom: 16px; }
+    .cta-band p { font-size: 18px; color: rgba(255,255,255,0.55); margin-bottom: 36px; max-width: 520px; margin-left: auto; margin-right: auto; }
+    .cta-band .hero-trust { justify-content: center; }
+    .cta-band .hero-trust-item { color: rgba(255,255,255,0.6); }
+    .cta-band-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
+
+    /* ── FOOTER ── */
+    .footer { background: #0A0F1C; padding: 56px 0 32px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
+    @media (max-width: 820px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+    .footer-brand { }
+    .footer-logo { display: flex; align-items: center; gap: 9px; margin-bottom: 14px; }
+    .footer-logo-icon { width: 30px; height: 30px; border-radius: 8px; background: var(--grad); display: flex; align-items: center; justify-content: center; }
+    .footer-logo-icon svg { width: 16px; height: 16px; fill: #fff; }
+    .footer-logo-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 900; color: #fff; letter-spacing: -0.02em; }
+    .footer-tagline { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.7; max-width: 260px; }
+    .footer-col h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.4); margin-bottom: 16px; }
+    .footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,0.6); text-decoration: none; margin-bottom: 10px; transition: color 0.15s; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: gap; gap: 12px; }
+    .footer-bottom p { font-size: 13px; color: rgba(255,255,255,0.3); }
+    .footer-bottom a { color: rgba(255,255,255,0.45); text-decoration: none; }
+    .footer-bottom a:hover { color: rgba(255,255,255,0.7); }
+    .footer-legal { display: flex; gap: 16px; }
+
+  </style>
+</head>
+<body>
+
+<!-- Announcement bar -->
+<div class="announce" id="announce">
+  <strong>Gratis proberen</strong> — 10 taken per maand, geen creditcard nodig.
+  <a href="#pricing">Zie alle abonnementen</a>
+</div>
+
+<!-- Nav -->
+<nav class="nav with-announce" id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <div class="nav-logo-icon">
+        <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 21V7l9 8 9-8v14" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      Milo
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hoe-het-werkt">Hoe het werkt</a></li>
+      <li><a href="#wat-milo-regelt">Wat Milo regelt</a></li>
+<li><a href="#pricing">Prijzen</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="#" class="nav-login">Inloggen</a>
+      <a href="#start" class="btn btn-primary btn-sm">Start gratis</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════ HERO ══════════════════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-layout">
+      <div class="fi">
+        <div class="hero-eyebrow">
+          <div class="hero-eyebrow-dot"></div>
+          Nieuw in Nederland — Jouw AI-assistent via WhatsApp
+        </div>
+        <h1 class="hero-title">
+          AI die niet praat,<br>
+          maar <span class="grad-text">doet.</span>
+        </h1>
+        <p class="hero-sub">
+          Milo is je persoonlijke assistent in WhatsApp. Stuur een brief, een vraag of een taak — Milo legt het uit, vergelijkt, boekt en regelt het <strong>namens jou</strong>.
+        </p>
+        <div class="hero-cta">
+          <a href="#start" class="btn btn-primary btn-lg">Start gratis</a>
+          <a href="#hoe-het-werkt" class="btn btn-ghost">Bekijk hoe het werkt</a>
+        </div>
+        <div class="hero-trust">
+          <div class="hero-trust-item">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Via WhatsApp
+          </div>
+          <div class="hero-trust-item">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Geen app nodig
+          </div>
+          <div class="hero-trust-item">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Gratis beginnen
+          </div>
+        </div>
+      </div>
+
+      <!-- WhatsApp mockup -->
+      <div class="fi" style="transition-delay:0.15s">
+        <div class="wa-phone" id="waPhone">
+          <div class="wa-header">
+            <div class="wa-avatar">M</div>
+            <div>
+              <div class="wa-name">Milo</div>
+              <div class="wa-online"><span class="wa-online-dot"></span>Online</div>
+            </div>
+          </div>
+          <div class="wa-body" id="waBody">
+            <div class="wa-date">Vandaag</div>
+            <div class="wa-typing" id="waTyping">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="wa-input-bar">
+            <input class="wa-input" placeholder="Bericht naar Milo..." readonly>
+            <button class="wa-send">
+              <svg viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ TRUST STRIP ══════════════════════ -->
+<section class="trust-section">
+  <div class="container">
+    <div class="trust-grid">
+      <div class="trust-item fi">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div class="trust-label">Via WhatsApp</div>
+        <div class="trust-sub">Geen nieuwe app leren. Gewoon appen.</div>
+      </div>
+      <div class="trust-item fi" style="transition-delay:0.1s">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="trust-label">Privacy-first</div>
+        <div class="trust-sub">Nederlands product. EU-data. Jij beslist.</div>
+      </div>
+      <div class="trust-item fi" style="transition-delay:0.2s">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="trust-label">In 30 seconden actief</div>
+        <div class="trust-sub">Betaal, Milo verschijnt in je contacten.</div>
+      </div>
+      <div class="trust-item fi" style="transition-delay:0.3s">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="trust-label">Gemiddeld €1.000/jaar bespaard</div>
+        <div class="trust-sub">Vergelijkingen, toeslagen, overstappen.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ HOW IT WORKS ══════════════════════ -->
+<section class="hiw-section" id="hoe-het-werkt">
+  <div class="container">
+    <div class="section-header fi">
+      <div class="section-label">Zo werkt het</div>
+      <h2>Geen app leren. Geen ingewikkelde prompts.<br>Gewoon appen zoals je gewend bent.</h2>
+      <p>Milo zit in je WhatsApp-contacten als een echte persoon. Typ, stuur een foto, of zeg wat je geregeld wilt hebben.</p>
+    </div>
+    <div class="hiw-steps">
+      <div class="hiw-step fi">
+        <div class="hiw-bg-num">1</div>
+        <div class="hiw-num-label">Stap 1</div>
+        <h3>Stuur iets naar Milo</h3>
+        <p>Een vraag, een foto van een brief, een taak. Via WhatsApp, precies zoals je een vriend een bericht stuurt.</p>
+      </div>
+      <div class="hiw-step fi" style="transition-delay:0.12s">
+        <div class="hiw-bg-num">2</div>
+        <div class="hiw-num-label">Stap 2</div>
+        <h3>Milo legt uit wat slim is</h3>
+        <p>Je krijgt duidelijke uitleg in normaal Nederlands — zonder jargon — en ziet precies wat je opties zijn.</p>
+      </div>
+      <div class="hiw-step fi" style="transition-delay:0.24s">
+        <div class="hiw-bg-num">3</div>
+        <div class="hiw-num-label">Stap 3</div>
+        <h3>Milo regelt het voor je</h3>
+        <p>Milo vergelijkt, boekt, schrijft brieven, vult formulieren in en volgt op. Jij keurt goed, Milo handelt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ KILLER USE CASE ══════════════════════ -->
+<section class="killer-section">
+  <div class="container">
+    <div class="killer-layout">
+      <div class="killer-text fi">
+        <div class="section-label">Killer use case #1</div>
+        <h2>Maak een foto van een brief. Milo regelt de rest.</h2>
+        <p>Iedereen krijgt brieven die je eigenlijk niet snapt of niet wilt uitzoeken. Van de Belastingdienst, gemeente, zorgverzekeraar of energieleverancier. Stuur een foto — binnen 10 seconden weet je wat er staat én wat je moet doen.</p>
+        <div class="killer-chips">
+          <span class="killer-chip">Belastingdienst</span>
+          <span class="killer-chip">Gemeente</span>
+          <span class="killer-chip">Zorgverzekeraar</span>
+          <span class="killer-chip">Energienota</span>
+          <span class="killer-chip">Contract</span>
+          <span class="killer-chip">Herinnering</span>
+        </div>
+        <a href="#start" class="btn btn-primary">Probeer nu gratis</a>
+      </div>
+      <div class="fi" style="transition-delay:0.15s">
+        <div class="killer-demo">
+          <div class="killer-demo-header">
+            <div class="killer-demo-icon">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div>
+              <div class="killer-demo-title">Brief-naar-actie in 4 stappen</div>
+              <div class="killer-demo-sub">Zo werkt het in de praktijk</div>
+            </div>
+          </div>
+          <div class="killer-step">
+            <div class="killer-step-num">1</div>
+            <div class="killer-step-body">
+              <strong>Jij: foto sturen</strong>
+              <p>Je stuurt een foto van de brief naar Milo via WhatsApp. Dat is alles.</p>
+            </div>
+          </div>
+          <div class="killer-step">
+            <div class="killer-step-num">2</div>
+            <div class="killer-step-body">
+              <strong>Milo: begrijpt de brief</strong>
+              <p>"Dit is een definitieve aanslag IB 2025. Je moet €347 bijbetalen vóór 28 maart."</p>
+            </div>
+          </div>
+          <div class="killer-step">
+            <div class="killer-step-num">3</div>
+            <div class="killer-step-body">
+              <strong>Milo: biedt opties aan</strong>
+              <p>Betalingsregeling instellen? Bezwaar maken? Uitleggen waarom dit bedrag? Jij kiest.</p>
+            </div>
+          </div>
+          <div class="killer-step">
+            <div class="killer-step-num">4</div>
+            <div class="killer-step-body">
+              <strong>Milo: handelt namens jou</strong>
+              <p>Na jouw go regelt Milo het. Je krijgt bevestiging zodra het klaar is.</p>
+            </div>
+          </div>
+          <div class="killer-result">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Van "wat moet ik hiermee?" naar "is geregeld."</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ USE CASES ══════════════════════ -->
+<section class="uc-section" id="wat-milo-regelt">
+  <div class="container">
+    <div class="section-header fi">
+      <div class="section-label">Wat Milo regelt</div>
+      <h2>Alles waarvoor je normaal uren kwijt bent</h2>
+      <p>Milo is niet één tool voor één taak. Het is jouw assistent voor alles wat je leven complexer maakt dan het moet zijn.</p>
+    </div>
+    <div class="uc-grid">
+      <div class="uc-card fi">
+        <div class="uc-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h3>Brieven & formulieren</h3>
+        <p>Milo legt uit wat er staat, helpt je reageren en vult formulieren voor je in.</p>
+        <div class="uc-example">"Leg uit wat er in deze brief van de Belastingdienst staat."</div>
+      </div>
+      <div class="uc-card fi" style="transition-delay:0.08s">
+        <div class="uc-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Vergelijken & besparen</h3>
+        <p>Energie, internet, zorgverzekering, telefoon — Milo vergelijkt en regelt het overstappen.</p>
+        <div class="uc-example">"Vergelijk mijn energieleverancier met alternatieven."</div>
+      </div>
+      <div class="uc-card fi" style="transition-delay:0.16s">
+        <div class="uc-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <h3>Afspraken & boekingen</h3>
+        <p>Milo zoekt, vergelijkt en boekt — van restaurant tot kapper, garage of vluchten.</p>
+        <div class="uc-example">"Boek een tafel voor 4 personen vrijdagavond in Amsterdam."</div>
+      </div>
+      <div class="uc-card fi" style="transition-delay:0.24s">
+        <div class="uc-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.71 3.4 2 2 0 0 1 3.68 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.59a16 16 0 0 0 5.5 5.5l1.76-1.76a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 14.92z"/></svg>
+        </div>
+        <h3>Bellen namens jou</h3>
+        <p>Geen zin om in de wacht te staan bij je verzekeraar, gemeente of leverancier? Milo belt.</p>
+        <div class="uc-example">"Bel mijn internetprovider om mijn contract op te zeggen."</div>
+      </div>
+      <div class="uc-card fi" style="transition-delay:0.32s">
+        <div class="uc-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Gezin & administratie</h3>
+        <p>Kinderopvang, school, medicijnen, afspraken — Milo houdt het overzicht voor het hele gezin.</p>
+        <div class="uc-example">"Herinner me als het kinderopvangtoeslag-formulier verloopt."</div>
+      </div>
+      <div class="uc-card fi" style="transition-delay:0.40s">
+        <div class="uc-icon">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3>Toeslagen & overheid</h3>
+        <p>Milo berekent waar je recht op hebt, helpt aanvragen en schrijft bezwaarschriften.</p>
+        <div class="uc-example">"Heb ik recht op huurtoeslag? Mijn huur is €950/maand."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ VS VERGELIJKING ══════════════════════ -->
+<section class="vs-section">
+  <div class="container">
+    <div class="section-header fi">
+      <div class="section-label">Vergelijking</div>
+      <h2>Geen chatbot. Een agent die handelt.</h2>
+      <p>ChatGPT kan uitleggen hoe je huurtoeslag aanvraagt. Milo <strong>vult het voor je in</strong>.</p>
+    </div>
+    <div class="fi" style="overflow-x:auto">
+      <table class="vs-table">
+        <thead>
+          <tr>
+            <th>Functie</th>
+            <th class="highlight">Milo</th>
+            <th>ChatGPT / Siri</th>
+            <th>Vergelijkingssites</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="vs-feature">Handelt namens jou (boekt, belt, invult)</td>
+            <td class="vs-cell-milo"><span class="vs-yes">Ja</span></td>
+            <td><span class="vs-no">Nee</span></td>
+            <td><span class="vs-no">Nee</span></td>
+          </tr>
+          <tr>
+            <td class="vs-feature">Onthoudt jouw situatie (geheugen)</td>
+            <td class="vs-cell-milo"><span class="vs-yes">Ja</span></td>
+            <td><span class="vs-partial">Beperkt</span></td>
+            <td><span class="vs-no">Nee</span></td>
+          </tr>
+          <tr>
+            <td class="vs-feature">Via WhatsApp — geen app nodig</td>
+            <td class="vs-cell-milo"><span class="vs-yes">Ja</span></td>
+            <td><span class="vs-no">Nee</span></td>
+            <td><span class="vs-no">Nee</span></td>
+          </tr>
+          <tr>
+            <td class="vs-feature">Begrijpt Nederlandse brieven & formulieren</td>
+            <td class="vs-cell-milo"><span class="vs-yes">Ja — diep</span></td>
+            <td><span class="vs-partial">Algemeen</span></td>
+            <td><span class="vs-no">Nee</span></td>
+          </tr>
+          <tr>
+            <td class="vs-feature">Regelt meerdere domeinen (niet één)</td>
+            <td class="vs-cell-milo"><span class="vs-yes">Ja</span></td>
+            <td><span class="vs-no">Nee</span></td>
+            <td><span class="vs-no">Nee</span></td>
+          </tr>
+          <tr>
+            <td class="vs-feature">Proactief — herinnert & optimaliseert</td>
+            <td class="vs-cell-milo"><span class="vs-yes">Ja</span></td>
+            <td><span class="vs-no">Nee</span></td>
+            <td><span class="vs-no">Nee</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ TECHNOLOGIE ACHTER MILO (verborgen) ══════════════════════ -->
+<section class="tech-section" id="technologie" style="display:none">
+  <div class="container">
+    <div class="section-header fi">
+      <div class="section-label">Hoe het werkt onder de motorkap</div>
+      <h2>AI-agent: brein + handen + geheugen</h2>
+      <p>Een AI-agent is meer dan een chatbot. Het is een systeem dat zelfstandig nadenkt, handelt en leert — zoals een digitale medewerker die nooit slaapt.</p>
+    </div>
+
+    <!-- flow diagram -->
+    <div class="tech-flow fi">
+      <div class="tech-flow-step">
+        <div class="tfs-label">Jij</div>
+        <div class="tfs-val">WhatsApp-bericht</div>
+      </div>
+      <div class="tech-flow-arrow">→</div>
+      <div class="tech-flow-step">
+        <div class="tfs-label">Brein</div>
+        <div class="tfs-val">LLM begrijpt context</div>
+      </div>
+      <div class="tech-flow-arrow">→</div>
+      <div class="tech-flow-step">
+        <div class="tfs-label">Handen</div>
+        <div class="tfs-val">Tools voeren uit</div>
+      </div>
+      <div class="tech-flow-arrow">→</div>
+      <div class="tech-flow-step">
+        <div class="tfs-label">Geheugen</div>
+        <div class="tfs-val">Profiel bijgewerkt</div>
+      </div>
+      <div class="tech-flow-arrow">→</div>
+      <div class="tech-flow-step">
+        <div class="tfs-label">Resultaat</div>
+        <div class="tfs-val">Klaar ✓</div>
+      </div>
+    </div>
+
+    <div class="tech-grid">
+      <div class="tech-card fi">
+        <div class="tech-card-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </div>
+        <h3>Het brein: taalmodel (LLM)</h3>
+        <p>Milo gebruikt een groot taalmodel (LLM) als denkcentrum. Het begrijpt wat je bedoelt, plant stappen en beslist welke acties nodig zijn — precies zoals een intelligente assistent dat zou doen.</p>
+        <span class="tech-tag">Gemini · GPT-4o · Claude</span>
+      </div>
+      <div class="tech-card fi">
+        <div class="tech-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <h3>De handen: tools &amp; API's</h3>
+        <p>Het brein alléén kan niets doen. Milo gebruikt <strong>OpenClaw</strong> — een open-source agent-framework — om te bellen naar externe diensten: e-mail versturen, formulieren invullen, afspraken boeken, bestanden ophalen.</p>
+        <span class="tech-tag">OpenClaw · open-source</span>
+      </div>
+      <div class="tech-card fi">
+        <div class="tech-card-icon">
+          <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+        </div>
+        <h3>Het geheugen: jouw profiel</h3>
+        <p>Na elke taak slaat Milo relevante context op — je voorkeuren, eerdere aanvragen, deadlines. Zo hoef je nooit twee keer hetzelfde uit te leggen en werkt Milo steeds slimmer naarmate je het meer gebruikt.</p>
+        <span class="tech-tag">PostgreSQL · persoonlijk profiel</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ NIEUWS & SOCIAL PROOF (verborgen) ══════════════════════ -->
+<section class="news-section" id="nieuws" style="display:none">
+  <div class="container">
+    <div class="section-header fi">
+      <div class="section-label">AI-agenten in het nieuws</div>
+      <h2>De wereld stapt over op agents</h2>
+      <p>Van Big Tech tot venture capital: iedereen zet in op autonome AI-agenten. Milo brengt deze technologie naar jou — via WhatsApp, vandaag.</p>
+    </div>
+    <div class="news-grid">
+      <div class="news-card fi">
+        <div class="news-source">
+          <span class="news-source-badge">Anthropic</span>
+          <span class="news-date">Oktober 2024</span>
+        </div>
+        <h3>"Computer Use" — AI die zelfstandig je scherm bedient</h3>
+        <p>Anthropic lanceerde Claude met de mogelijkheid om muisklikken, toetsaanslagen en schermlezen volledig zelfstandig uit te voeren. Het startschot van het agenten-tijdperk.</p>
+      </div>
+      <div class="news-card fi">
+        <div class="news-source">
+          <span class="news-source-badge">Google DeepMind</span>
+          <span class="news-date">December 2024</span>
+        </div>
+        <h3>Project Mariner: agent die het web voor je navigeert</h3>
+        <p>Google's Project Mariner kan zelfstandig websites bezoeken, formulieren invullen en aankopen doen — puur op basis van een tekst-instructie van de gebruiker.</p>
+      </div>
+      <div class="news-card fi">
+        <div class="news-source">
+          <span class="news-source-badge">OpenAI</span>
+          <span class="news-date">Januari 2025</span>
+        </div>
+        <h3>Operator: OpenAI's agent die zelfstandig taken uitvoert</h3>
+        <p>OpenAI lanceerde Operator als standalone product: een AI-agent die boekingen maakt, aankopen doet en formulieren verwerkt zonder menselijke tussenkomst.</p>
+      </div>
+    </div>
+
+    <!-- stat bar -->
+    <div class="news-stat-bar">
+      <div class="news-stat fi">
+        <div class="news-stat-num">40%</div>
+        <div class="news-stat-label">van enterprise-apps heeft in 2026 een ingebouwde agent — Gartner</div>
+      </div>
+      <div class="news-stat fi">
+        <div class="news-stat-num">$2,8B</div>
+        <div class="news-stat-label">venture capital geïnvesteerd in AI-agent startups in H1 2025</div>
+      </div>
+      <div class="news-stat fi">
+        <div class="news-stat-num">$450B</div>
+        <div class="news-stat-label">verwachte marktomvang voor autonome agents in 2035 — McKinsey</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ PRIVACY & VERTROUWEN (verborgen) ══════════════════════ -->
+<section class="privacy-section" style="display:none">
+  <div class="container">
+    <div class="section-header fi">
+      <div class="section-label">Vertrouwen & privacy</div>
+      <h2>Jij hebt altijd de controle</h2>
+      <p>Milo verwerkt gevoelige informatie. Dat doen we met maximale zorgvuldigheid, transparantie en respect voor jouw privacy.</p>
+    </div>
+    <div class="privacy-grid">
+      <div class="privacy-card fi">
+        <div class="pc-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Europese data-opslag</h3>
+        <p>Al jouw data wordt opgeslagen op Europese servers (Hetzner Duitsland). Nooit buiten de EU.</p>
+      </div>
+      <div class="privacy-card fi" style="transition-delay:0.1s">
+        <div class="pc-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <h3>Versleuteld & privé</h3>
+        <p>Alle data wordt versleuteld opgeslagen (AES-256). BSN-nummers worden nooit bewaard.</p>
+      </div>
+      <div class="privacy-card fi" style="transition-delay:0.2s">
+        <div class="pc-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3>Jij beslist altijd</h3>
+        <p>Milo handelt nooit zonder jouw bevestiging bij financiële acties of officiële aanvragen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ PRICING ══════════════════════ -->
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <div class="section-header fi">
+      <div class="section-label">Abonnementen</div>
+      <h2>Jouw persoonlijke assistent.<br>Eindelijk bereikbaar.</h2>
+      <p>Een persoonlijke assistent kost normaal €3.000–8.000 per maand. Milo doet hetzelfde voor jou — automatisch en schaalbaar.</p>
+    </div>
+    <div class="pricing-grid">
+      <!-- FREE -->
+      <div class="pricing-card fi">
+        <div class="pricing-tier">Gratis</div>
+        <div class="pricing-price"><span class="free-label">€0</span> <span class="period">/maand</span></div>
+        <div class="pricing-tagline">Aha-moment ervaren zonder risico.</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 10 taken per maand</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> WhatsApp-interface</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Brieven uitleggen</li>
+          <li class="off"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Geen geheugen</li>
+          <li class="off"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Alleen advies, geen actie</li>
+        </ul>
+        <a href="#start" class="btn btn-ghost pricing-cta">Gratis starten</a>
+      </div>
+      <!-- BASIS -->
+      <div class="pricing-card fi" style="transition-delay:0.1s">
+        <div class="pricing-tier">Basis</div>
+        <div class="pricing-price"><span class="amount">€9,99</span> <span class="period">/maand</span></div>
+        <div class="pricing-tagline">Voor iedereen die tijd en geld wil besparen.</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 50 taken per maand</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> WhatsApp + web-app</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Persoonlijk geheugen</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Brieven + vergelijkingen</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Herinneringen instellen</li>
+        </ul>
+        <a href="#start" class="btn btn-ghost pricing-cta">Kies Basis</a>
+        <div class="pricing-yearly">€7,99/maand bij jaarabonnement</div>
+      </div>
+      <!-- PLUS — FEATURED -->
+      <div class="pricing-card featured fi" style="transition-delay:0.2s">
+        <div class="pricing-badge">Meest gekozen</div>
+        <div class="pricing-tier">Plus</div>
+        <div class="pricing-price"><span class="amount">€19,99</span> <span class="period">/maand</span></div>
+        <div class="pricing-tagline">Volledige uitvoering — Milo handelt namens jou.</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> <strong>Onbeperkt taken</strong></li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> WhatsApp + web + email</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Volledig groeiend geheugen</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Boekingen & overheid</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Toeslagen & bezwaarschriften</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Proactieve optimalisaties</li>
+        </ul>
+        <a href="#start" class="btn btn-primary pricing-cta">Kies Plus</a>
+        <div class="pricing-yearly">€15,99/maand bij jaarabonnement</div>
+      </div>
+      <!-- PREMIUM -->
+      <div class="pricing-card fi" style="transition-delay:0.3s">
+        <div class="pricing-tier">Premium</div>
+        <div class="pricing-price"><span class="amount">€39,99</span> <span class="period">/maand</span></div>
+        <div class="pricing-tagline">Milo belt ook namens jou. Voor het hele gezin.</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Alles van Plus</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Milo belt namens jou (10×/maand)</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Gezinsprofielen (4 personen)</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Belastingaangifte-assistentie</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Jaarlijkse financiële check-up</li>
+        </ul>
+        <a href="#start" class="btn btn-ghost pricing-cta">Kies Premium</a>
+        <div class="pricing-yearly">€32,99/maand bij jaarabonnement</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ TESTIMONIALS (verborgen) ══════════════════════ -->
+<section class="testi-section" style="display:none">
+  <div class="container">
+    <div class="section-header fi">
+      <div class="section-label">Ervaringen</div>
+      <h2>Wat gebruikers zeggen</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card fi">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"Ik wist al jaren dat ik toeslagen misliep maar had nooit de tijd om het uit te zoeken. Milo deed het in 20 minuten en heeft €2.400 voor ons geregeld. Niet te geloven."</div>
+        <div class="testi-author">
+          <div class="testi-avatar">L</div>
+          <div>
+            <div class="testi-name">Lisa, 34</div>
+            <div class="testi-role">Marketing manager, Amsterdam</div>
+          </div>
+        </div>
+        <div class="testi-saving">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          €2.400 teruggekregen
+        </div>
+      </div>
+      <div class="testi-card fi" style="transition-delay:0.12s">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"Mijn vader van 71 snapt geen DigiD en durft niet te bellen. Ik heb Milo voor hem gekocht. Nu stuurt hij gewoon een WhatsApp en Milo regelt het. Beste cadeau ooit."</div>
+        <div class="testi-author">
+          <div class="testi-avatar">S</div>
+          <div>
+            <div class="testi-name">Sophie, 42</div>
+            <div class="testi-role">Verpleegkundige, Rotterdam</div>
+          </div>
+        </div>
+        <div class="testi-saving">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          €840/jaar bespaard op verzekering
+        </div>
+      </div>
+      <div class="testi-card fi" style="transition-delay:0.24s">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"Als ZZP'er was de belastingaangifte elk jaar een ramp. Milo heeft het dit jaar samen met mij doorlopen, stap voor stap. Heb €400 meer teruggekregen dan vorig jaar."</div>
+        <div class="testi-author">
+          <div class="testi-avatar">K</div>
+          <div>
+            <div class="testi-name">Kevin, 38</div>
+            <div class="testi-role">Webdesigner, Utrecht</div>
+          </div>
+        </div>
+        <div class="testi-saving">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          €400 extra belastingteruggave
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ FAQ ══════════════════════ -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="section-header fi">
+      <div class="section-label">FAQ</div>
+      <h2>Veelgestelde vragen</h2>
+    </div>
+    <div class="faq-list fi">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Hoe verschijnt Milo in mijn WhatsApp?
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a">Na aanmelding en betaling ontvang je een WhatsApp-link. Je voegt Milo toe als contact — precies zoals je een nieuw telefoonnummer opslaat. Binnen 30 seconden kun je je eerste bericht sturen.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Handelt Milo nooit zonder mijn toestemming?
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a">Nooit. Bij acties met consequenties — zoals een boeking, overstap of officiële aanvraag — vraagt Milo altijd eerst jouw bevestiging. Jij zegt "ja" of "nee", dan handelt Milo.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Zijn mijn gegevens veilig?
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a">Ja. Al je data wordt versleuteld opgeslagen op Europese servers (Hetzner, Duitsland). BSN-nummers worden nooit bewaard. Je kunt op elk moment al je data laten verwijderen via een simpel WhatsApp-bericht aan Milo.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Wat is het verschil met ChatGPT?
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a">ChatGPT geeft je uitleg — je moet daarna zelf aan de slag. Milo DOET het: boekt, belt, vergelijkt en vult in. Bovendien onthoudt Milo jouw situatie (je naam, gezin, financiën, voorkeuren) en wordt elke dag slimmer over jou. ChatGPT begint elke keer opnieuw.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Kan ik Milo kopen voor mijn ouders?
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a">Zeker. Milo werkt via WhatsApp — je hoeft geen apps te installeren of accounts aan te maken. Veel kinderen kopen een abonnement voor hun ouders als praktisch cadeau. Je ouders sturen gewoon een berichtje en Milo helpt.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Kan ik op elk moment opzeggen?
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a">Ja, je kunt maandelijks opzeggen zonder kosten. Jaarabonnementen hebben 2 maanden korting en verlopen automatisch. Je kunt Milo ook gewoon vragen om je abonnement op te zeggen — dan regelt hij het.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Wat valt onder "Milo belt namens jou"?
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-a">In het Premium-abonnement kan Milo namens jou bellen (max. 10 gesprekken per maand). Denk aan: opzeggen bij een leverancier, informatie opvragen bij de gemeente, een afspraak maken bij de dokter of klagen bij een webshop. Milo identificeert zich altijd als AI-assistent.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ WACHTLIJST ══════════════════════ -->
+<section class="waitlist-section" id="wachtlijst">
+  <div class="container">
+    <div class="waitlist-inner fi">
+      <div class="waitlist-count">
+        <div class="waitlist-count-dot"></div>
+        847 mensen op de wachtlijst
+      </div>
+      <h2>Wees er vroeg bij.</h2>
+      <p>Milo is nog in bèta. Schrijf je in voor vroege toegang en sla jouw plek op de wachtlijst. Deel met een vriend voor een hogere positie.</p>
+      <div class="waitlist-success" id="waitlistSuccess">
+        Gelukt! Je staat op de wachtlijst. We sturen je een bevestiging.
+      </div>
+      <form class="waitlist-form" id="waitlistForm" onsubmit="submitWaitlist(event)">
+        <input
+          class="waitlist-input"
+          type="email"
+          id="waitlistEmail"
+          placeholder="jouw@email.nl"
+          required
+          autocomplete="email"
+        >
+        <button type="submit" class="btn btn-primary btn-lg">Schrijf me in</button>
+      </form>
+      <div class="waitlist-sub">
+        Geen spam. <strong>Deel met een vriend</strong> → +1 positie op de wachtlijst.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ FINAL CTA ══════════════════════ -->
+<section class="cta-band" id="start">
+  <div class="container">
+    <div class="cta-band-inner fi">
+      <h2>Milo regelt het.<br>Jij leeft.</h2>
+      <p>Gratis beginnen — 10 taken per maand. Geen creditcard, geen verplichtingen.</p>
+      <div class="cta-band-btns">
+        <a href="#" class="btn btn-primary btn-lg">Start gratis via WhatsApp</a>
+        <a href="#pricing" class="btn btn-ghost btn-lg" style="color:rgba(255,255,255,0.75);border-color:rgba(255,255,255,0.25);">Bekijk abonnementen</a>
+      </div>
+      <div class="hero-trust" style="justify-content:center">
+        <div class="hero-trust-item" style="color:rgba(255,255,255,0.55)">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Geen creditcard nodig
+        </div>
+        <div class="hero-trust-item" style="color:rgba(255,255,255,0.55)">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Direct actief via WhatsApp
+        </div>
+        <div class="hero-trust-item" style="color:rgba(255,255,255,0.55)">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Elk moment opzegbaar
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ FOOTER ══════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-icon">
+            <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 21V7l9 8 9-8v14" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="footer-logo-name">Milo</span>
+        </div>
+        <p class="footer-tagline">Jouw persoonlijke AI-assistent. Niet om mee te praten — maar om voor je te werken.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="#hoe-het-werkt">Hoe het werkt</a>
+        <a href="#wat-milo-regelt">Wat Milo regelt</a>
+        <a href="#pricing">Abonnementen</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <h4>Bedrijf</h4>
+        <a href="#">Over ons</a>
+        <a href="#">Blog</a>
+        <a href="#">Persberichten</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Juridisch</h4>
+        <a href="#">Privacybeleid</a>
+        <a href="#">Algemene voorwaarden</a>
+        <a href="#">Cookiebeleid</a>
+        <a href="#">AVG/GDPR</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 BotLease B.V. — KvK Amsterdam. Milo is een product van BotLease B.V.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy</a>
+        <a href="#">Voorwaarden</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Announce bar height + nav offset ──
+  const announce = document.getElementById('announce');
+  const nav = document.getElementById('nav');
+  let announceH = announce ? announce.offsetHeight : 0;
+
+  window.addEventListener('scroll', () => {
+    const s = window.scrollY;
+    if (s > 10) { nav.classList.add('scrolled'); } else { nav.classList.remove('scrolled'); }
+    // hide announce on scroll
+    if (s > announceH) {
+      announce && (announce.style.transform = `translateY(-${announceH}px)`);
+      nav.classList.remove('with-announce');
+    } else {
+      announce && (announce.style.transform = '');
+      nav.classList.add('with-announce');
+    }
+  });
+  announce && (announce.style.transition = 'transform 0.3s ease');
+
+  // ── Mobile hamburger ──
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  // ── Fade-in on scroll ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fi').forEach(el => observer.observe(el));
+
+  // ── FAQ toggle ──
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const isOpen = answer.classList.contains('open');
+    // close all
+    document.querySelectorAll('.faq-q').forEach(q => q.classList.remove('open'));
+    document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+    if (!isOpen) { btn.classList.add('open'); answer.classList.add('open'); }
+  }
+
+  // ── WhatsApp chat animation ──
+  const waMessages = [
+    { side: 'me', img: true, text: '"Wat betekent deze brief van de gemeente?"', time: '09:14' },
+    { side: 'them', text: 'Dit is een aanvraag voor een parkeervergunning. Je moet voor <strong>1 april</strong> reageren.', time: '09:14' },
+    { side: 'them', text: 'Wil je dat ik:<br>1. De aanvraag voor je invul?<br>2. Meer uitleg geef?<br>3. Een herinnering instel?', time: '09:14' },
+    { side: 'me', text: 'Doe 1 graag!', time: '09:15' },
+    { side: 'them', text: '✅ Geregeld. De aanvraag is ingediend. Je ontvangt een bevestiging per post.', time: '09:15' },
+  ];
+
+  let msgIndex = 0;
+  const waBody = document.getElementById('waBody');
+  const waTyping = document.getElementById('waTyping');
+
+  function addWaMessage(msg, delay) {
+    setTimeout(() => {
+      waTyping.style.display = 'none';
+      const bubble = document.createElement('div');
+      bubble.className = `wa-bubble ${msg.side}`;
+      let html = '';
+      if (msg.img) html += `<div class="wa-img">
+        <div class="wa-img-header">
+          <div class="wa-img-logo"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+          <span class="wa-img-sender">Gemeente Amsterdam</span>
+        </div>
+        <div class="wa-img-subject">Aanvraag parkeervergunning — actie vereist</div>
+        <div class="wa-img-line w90"></div>
+        <div class="wa-img-line w80"></div>
+        <div class="wa-img-line w60"></div>
+      </div>`;
+      html += msg.text;
+      html += `<span class="wa-bubble-time">${msg.time}${msg.side === 'me' ? ' ✓✓' : ''}</span>`;
+      bubble.innerHTML = html;
+      waBody.insertBefore(bubble, waTyping);
+      waBody.scrollTop = waBody.scrollHeight;
+
+      if (msgIndex < waMessages.length - 1) {
+        msgIndex++;
+        setTimeout(() => {
+          if (waMessages[msgIndex].side === 'them') {
+            waTyping.style.display = 'flex';
+            waBody.scrollTop = waBody.scrollHeight;
+          }
+          addWaMessage(waMessages[msgIndex], waMessages[msgIndex].side === 'them' ? 1400 : 800);
+        }, 900);
+      } else {
+        // reset after pause
+        setTimeout(resetWaChat, 4000);
+      }
+    }, delay);
+  }
+
+  function resetWaChat() {
+    // Remove all bubbles except date
+    const bubbles = waBody.querySelectorAll('.wa-bubble');
+    bubbles.forEach(b => b.remove());
+    waTyping.style.display = 'none';
+    msgIndex = 0;
+    // restart
+    setTimeout(() => {
+      waTyping.style.display = 'flex';
+      addWaMessage(waMessages[0], 1200);
+    }, 800);
+  }
+
+  // Start animation after page load
+  setTimeout(() => {
+    waTyping.style.display = 'flex';
+    addWaMessage(waMessages[0], 1200);
+  }, 1500);
+
+  // ── Wachtlijst form ──
+  async function submitWaitlist(e) {
+    e.preventDefault();
+    const email = document.getElementById('waitlistEmail').value.trim();
+    const btn = e.target.querySelector('button[type=submit]');
+    const originalText = btn.textContent;
+    btn.textContent = 'Even geduld…';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, source: 'hero_waitlist' }),
+      });
+      const data = await res.json();
+
+      document.getElementById('waitlistForm').style.display = 'none';
+      const successEl = document.getElementById('waitlistSuccess');
+      const pos = data.position || 848;
+      successEl.textContent = `Gelukt! Je staat op positie #${pos} van de wachtlijst. Check je inbox voor bevestiging.`;
+      successEl.classList.add('show');
+
+      const counter = document.querySelector('.waitlist-count');
+      if (counter) counter.innerHTML = `<div class="waitlist-count-dot"></div>${pos} mensen op de wachtlijst`;
+    } catch {
+      // Fallback: toon toch succes (localStorage)
+      try {
+        const existing = JSON.parse(localStorage.getItem('milo_waitlist') || '[]');
+        if (!existing.includes(email)) existing.push(email);
+        localStorage.setItem('milo_waitlist', JSON.stringify(existing));
+      } catch {}
+      document.getElementById('waitlistForm').style.display = 'none';
+      document.getElementById('waitlistSuccess').classList.add('show');
+    }
+  }
+</script>
+
+</body>
+</html>
